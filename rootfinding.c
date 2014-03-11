@@ -89,6 +89,40 @@ extern double newton(func1arg f, func1arg df, double x0, int Nmax, double tol, i
 
 extern double secant (func1arg f, double x0, double x1, double tol, int Nmax, int verb){
 
+	double f0,f1;
+	double tempx, tempf;
+	int count=0;
+
+	f0=f(x0);
+	f1=f(x1);
+	while(count<Nmax){
+
+		if(fabs(f0) < fabs(f1)){
+			tempx=x0;
+			x0=x1;
+			x1=tempx;
+
+			tempf=f0;
+			f0=f1;
+			f1=tempf;
+		}
+
+		tempx=x1-(f1/(f1-f0))*(x1-x0);
+		x0=x1;
+		f0=f1;
+		x1=tempx;
+		f1=f(tempx);
+
+		if(fabs(x1-x0)<tol){
+			printf("Result is x = %f\n", x1);
+			break;
+		}
+
+
+		count++;
+	}
+
+
 
 	return 0.0;
 }
