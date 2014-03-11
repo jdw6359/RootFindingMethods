@@ -9,33 +9,29 @@
 /* Function that represents the equation whose roots we are solving. Function
    evaluates and returns result at the given x value */
 double equation(double value){
-	return .76 * value * sin(30/52 * value) * tan(10/47 * value) + \
-	2.9 * cos(value + 2.5) * sin(.39 * (1.5 + value));
+	return (pow(value,3)) - (4 * pow(value,2)) + (7*value) + (4);
+
 }
 
 /* Function that represents the derivative of the equation expressed above.
    Function evaluates and returns result at given x value */
 double derivative(double value){
-	return 911.350;
+	return (3 * pow(value,2)) - (8 *value) + (7);
 }
 
 
 int main(int argc, char *argv[]){
 /*
-	printf("Result at %f is %f\n", 2.212389, equation(2.212389));
 	double start=-2.5;
 	double end=2.5;
 	while(start<end){
 
-		printf("value at %f is %f\n", start, equation(start));
+		printf("value at %f is %f\n", start, derivative(start));
 		start+=.01;
 	}
-
 */
 
 
-
-	/* Check to make sure that the first argument is a method type */
 
 	/* Declare string variable to represent the method */
 	char *method;

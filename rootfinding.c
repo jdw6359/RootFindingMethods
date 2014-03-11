@@ -7,6 +7,7 @@
  ******************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "rootfinding.h"
 
 
@@ -20,13 +21,12 @@ extern double bisection ( func1arg f, double a, double b, int Nmax, double tol, 
 	int count=1;
 
 	while(count < Nmax){
-		printf("A and B values: %f, %f\n", a,b);
 		/* Set c equal to the new midpoint between values a and b */
 		c=(a+b)/2;
 
 		/* If f(c) is zero or the distance between b and a is less than the
 		desired tolerance, we have found our solution */
-		if((f(c)==0)||((b-a)/2<tol)){
+		if((f(c)==0)||(fabs((b-a)/2)<tol)){
 			printf("Root found %f\n", c);
 			break;
 		}
@@ -56,6 +56,31 @@ extern double bisection ( func1arg f, double a, double b, int Nmax, double tol, 
 
 
 extern double newton(func1arg f, func1arg df, double x0, int Nmax, double tol, int verb){
+
+	double y, yprime, x1;
+
+	int count=1;
+
+
+	while(count<Nmax){
+
+		/* assign the function and derivative values at this x value */
+		y=f(x0);
+		yprime=df(x0);
+
+		/* Do newton's computation */
+		x1=x0-y/yprime;
+
+		/* if the result is within tolerance, we have found the solution */
+		if(fabs(x1-x0)/fabs(x1) < tol){
+			printf("solution found: %f\n", x0);
+			break;
+		}
+		x0=x1;
+		count++;
+	}
+
+
 
 	return 0.0;
 }
