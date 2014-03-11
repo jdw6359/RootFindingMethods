@@ -9,7 +9,7 @@
 /* Function that represents the equation whose roots we are solving. Function
    evaluates and returns result at the given x value */
 double equation(double value){
-	return .76 * value * sin((30/52) * value) * tan((10/47) * value) + \
+	return .76 * value * sin(30/52 * value) * tan(10/47 * value) + \
 	2.9 * cos(value + 2.5) * sin(.39 * (1.5 + value));
 }
 
@@ -21,6 +21,19 @@ double derivative(double value){
 
 
 int main(int argc, char *argv[]){
+/*
+	printf("Result at %f is %f\n", 2.212389, equation(2.212389));
+	double start=-2.5;
+	double end=2.5;
+	while(start<end){
+
+		printf("value at %f is %f\n", start, equation(start));
+		start+=.01;
+	}
+
+*/
+
+
 
 	/* Check to make sure that the first argument is a method type */
 
@@ -64,7 +77,7 @@ int main(int argc, char *argv[]){
 
 		/* Make function call to newton method */
 
-		bisection(f,a,b,tolerance,verbose);
+		bisection(f,a,b, MAX_ITERATIONS, tolerance,verbose);
 	}
 	/* end bisection check */
 
@@ -76,23 +89,11 @@ int main(int argc, char *argv[]){
 		x1=atof(argv[4]);
 		verbose=atoi(argv[5]);
 
-
-
 		secant(f,x0,x1,tolerance,MAX_ITERATIONS,verbose);
 
 	}
 	/* end secant check */
 
-
-
-
-
-
-	printf("Arg: %s\n", method);
-
-
-
-
-
 	return 0;
 }
+/* end main method */

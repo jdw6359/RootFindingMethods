@@ -15,7 +15,7 @@
 typedef double (*func1arg) (double);
 
 /* Function prototypes */
-extern double bisection ( func1arg f, double a, double b, double tol , int verb);
+extern double bisection ( func1arg f, double a, double b, int Nmax, double tol , int verb);
 /* 
 PURPOSE:   find the root of a scalar nonlinear function using the
            bisection method

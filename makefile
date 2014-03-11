@@ -10,16 +10,16 @@ CFLAGS = -Wall -ansi
 LFLAGS = -lm
 
 ## Testing Parameters, modify as needed
-TOL=.000000001
+TOL=.000000000001
 #Bisection
-A=1.5
+A=-2.5
 B=2.5
 #Newton
-X01=2.0
-X02=2.25
+X01=-1.5
+X02=1.5
 #Secant
-X11=5.1
-X12=5.11
+X11=-5
+X12=5
 #VERB=1 (print partial results)
 VERB=1
 
