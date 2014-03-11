@@ -8,6 +8,8 @@
  *****************************************************************************/
 #ifndef _ROOTFINDING_H_
 #define _ROOTFINDING_H_
+#define MAX_ITERATIONS (1000)
+
 
 /* Typemark for a scalar function of one variable */
 typedef double (*func1arg) (double);
