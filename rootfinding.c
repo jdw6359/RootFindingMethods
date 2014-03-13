@@ -14,6 +14,8 @@
 /* Bisection method implementation */
 extern double bisection ( func1arg f, double a, double b, int Nmax, double tol, int verb){
 
+	printf("\nPerforming bisection method...\n");
+
 	/* double value to represent the midpoint we are evaluating */
 	double c;
 
@@ -24,10 +26,32 @@ extern double bisection ( func1arg f, double a, double b, int Nmax, double tol, 
 		/* Set c equal to the new midpoint between values a and b */
 		c=(a+b)/2;
 
+		/* If the verbose flag is set, then we will display the
+		partial results of the alrogith here */
+		printf("\nThis is iteration #%d through the bisection algorithm...\n", count);
+		printf("The left endpoint is %f\n", a);
+		printf("The right endpoint is %f\n", b);
+		printf("The midpoint between the two points is %f\n", c);
+
+		/* Going to display results as to which bisection to
+		investigate, for programming convenience, the same logic that
+		is used lower in this algorithm is going to be repeated without
+		concern for performance due to the fact that we explicitly would
+		like to see the partial results */
+		if((f(a) * f(c))>0){
+			printf("There is a sign change between %f and %f, we will further investigate this bisection\n", c, b);
+		}else{
+			printf("There is a sign change between %f and %f, we will further investigate this bisection\n", a, c);
+		}
+
+
+
+
+
 		/* If f(c) is zero or the distance between b and a is less than the
 		desired tolerance, we have found our solution */
 		if((f(c)==0)||(fabs((b-a)/2)<tol)){
-			printf("Root found %f\n", c);
+			printf("\nRoot found %f\n\n", c);
 			break;
 		}
 		/* end if check to find root */
@@ -57,6 +81,8 @@ extern double bisection ( func1arg f, double a, double b, int Nmax, double tol, 
 
 extern double newton(func1arg f, func1arg df, double x0, int Nmax, double tol, int verb){
 
+	printf("\nPerforming newton method...\n");
+
 	double y, yprime, x1;
 
 	int count=1;
@@ -73,7 +99,7 @@ extern double newton(func1arg f, func1arg df, double x0, int Nmax, double tol, i
 
 		/* if the result is within tolerance, we have found the solution */
 		if(fabs(x1-x0)/fabs(x1) < tol){
-			printf("solution found: %f\n", x0);
+			printf("\nsolution found: %f\n\n", x0);
 			break;
 		}
 		x0=x1;
@@ -88,6 +114,8 @@ extern double newton(func1arg f, func1arg df, double x0, int Nmax, double tol, i
 
 
 extern double secant (func1arg f, double x0, double x1, double tol, int Nmax, int verb){
+
+	printf("Performing secant method...");
 
 	double f0,f1;
 	double tempx, tempf;
@@ -114,7 +142,7 @@ extern double secant (func1arg f, double x0, double x1, double tol, int Nmax, in
 		f1=f(tempx);
 
 		if(fabs(x1-x0)<tol){
-			printf("Result is x = %f\n", x1);
+			printf("\nResult is x = %f\n\n", x1);
 			break;
 		}
 
