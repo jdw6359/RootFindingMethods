@@ -1,0 +1,150 @@
+./hw4 secant .000000000001 -1.5 -5 1
+
+Performing secant method...
+
+This is iteration #1 through the secant algorithm
+Value of x0 is: -1.500000
+Value of x1 is: -5.000000
+Value of f(-1.500000) is: -18.875000
+Value of f(-5.000000) is: -256.000000
+
+This is iteration #2 through the secant algorithm
+Value of x0 is: -1.500000
+Value of x1 is: -1.221402
+Value of f(-1.500000) is: -18.875000
+Value of f(-1.221402) is: -12.339225
+
+This is iteration #3 through the secant algorithm
+Value of x0 is: -1.221402
+Value of x1 is: -0.695423
+Value of f(-1.221402) is: -12.339225
+Value of f(-0.695423) is: -3.138731
+
+This is iteration #4 through the secant algorithm
+Value of x0 is: -0.695423
+Value of x1 is: -0.515986
+Value of f(-0.695423) is: -3.138731
+Value of f(-0.515986) is: -0.814249
+
+This is iteration #5 through the secant algorithm
+Value of x0 is: -0.515986
+Value of x1 is: -0.453131
+Value of f(-0.515986) is: -0.814249
+Value of f(-0.453131) is: -0.086267
+
+This is iteration #6 through the secant algorithm
+Value of x0 is: -0.453131
+Value of x1 is: -0.445682
+Value of f(-0.453131) is: -0.086267
+Value of f(-0.445682) is: -0.002836
+
+This is iteration #7 through the secant algorithm
+Value of x0 is: -0.445682
+Value of x1 is: -0.445429
+Value of f(-0.445682) is: -0.002836
+Value of f(-0.445429) is: -0.000010
+
+This is iteration #8 through the secant algorithm
+Value of x0 is: -0.445429
+Value of x1 is: -0.445428
+Value of f(-0.445429) is: -0.000010
+Value of f(-0.445428) is: -0.000000
+
+This is iteration #9 through the secant algorithm
+Value of x0 is: -0.445428
+Value of x1 is: -0.445428
+Value of f(-0.445428) is: -0.000000
+Value of f(-0.445428) is: -0.000000
+
+Result is x = -0.445428
+
+./hw4 secant .000000000001 1.5 5 1
+
+Performing secant method...
+
+This is iteration #1 through the secant algorithm
+Value of x0 is: 1.500000
+Value of x1 is: 5.000000
+Value of f(1.500000) is: 8.875000
+Value of f(5.000000) is: 64.000000
+
+This is iteration #2 through the secant algorithm
+Value of x0 is: 1.500000
+Value of x1 is: 0.936508
+Value of f(1.500000) is: 8.875000
+Value of f(0.936508) is: 7.868729
+
+This is iteration #3 through the secant algorithm
+Value of x0 is: 0.936508
+Value of x1 is: -3.469825
+Value of f(0.936508) is: 7.868729
+Value of f(-3.469825) is: -110.223098
+
+This is iteration #4 through the secant algorithm
+Value of x0 is: 0.936508
+Value of x1 is: 0.642904
+Value of f(0.936508) is: 7.868729
+Value of f(0.642904) is: 7.112754
+
+This is iteration #5 through the secant algorithm
+Value of x0 is: 0.642904
+Value of x1 is: -2.119535
+Value of f(0.642904) is: 7.112754
+Value of f(-2.119535) is: -38.328311
+
+This is iteration #6 through the secant algorithm
+Value of x0 is: 0.642904
+Value of x1 is: 0.210508
+Value of f(0.642904) is: 7.112754
+Value of f(0.210508) is: 5.305628
+
+This is iteration #7 through the secant algorithm
+Value of x0 is: 0.210508
+Value of x1 is: -1.058985
+Value of f(0.210508) is: 5.305628
+Value of f(-1.058985) is: -9.086293
+
+This is iteration #8 through the secant algorithm
+Value of x0 is: 0.210508
+Value of x1 is: -0.257495
+Value of f(0.210508) is: 5.305628
+Value of f(-0.257495) is: 1.915248
+
+This is iteration #9 through the secant algorithm
+Value of x0 is: -0.257495
+Value of x1 is: -0.521873
+Value of f(-0.257495) is: 1.915248
+Value of f(-0.521873) is: -0.884646
+
+This is iteration #10 through the secant algorithm
+Value of x0 is: -0.521873
+Value of x1 is: -0.438341
+Value of f(-0.521873) is: -0.884646
+Value of f(-0.438341) is: 0.078821
+
+This is iteration #11 through the secant algorithm
+Value of x0 is: -0.438341
+Value of x1 is: -0.445174
+Value of f(-0.438341) is: 0.078821
+Value of f(-0.445174) is: 0.002833
+
+This is iteration #12 through the secant algorithm
+Value of x0 is: -0.445174
+Value of x1 is: -0.445429
+Value of f(-0.445174) is: 0.002833
+Value of f(-0.445429) is: -0.000010
+
+This is iteration #13 through the secant algorithm
+Value of x0 is: -0.445429
+Value of x1 is: -0.445428
+Value of f(-0.445429) is: -0.000010
+Value of f(-0.445428) is: 0.000000
+
+This is iteration #14 through the secant algorithm
+Value of x0 is: -0.445428
+Value of x1 is: -0.445428
+Value of f(-0.445428) is: 0.000000
+Value of f(-0.445428) is: 0.000000
+
+Result is x = -0.445428
+

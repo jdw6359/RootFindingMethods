@@ -3,7 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-
 #include "rootfinding.h"
 
 /* Function that represents the equation whose roots we are solving. Function
@@ -21,17 +20,6 @@ double derivative(double value){
 
 
 int main(int argc, char *argv[]){
-/*
-	double start=-2.5;
-	double end=2.5;
-	while(start<end){
-
-		printf("value at %f is %f\n", start, derivative(start));
-		start+=.01;
-	}
-*/
-
-
 
 	/* Declare string variable to represent the method */
 	char *method;
@@ -46,49 +34,89 @@ int main(int argc, char *argv[]){
 	func1arg f=&equation;
 	func1arg df=&derivative;
 
-	/* set method equal to the first applicable cmdline arg */
-	method=argv[1];
+	/* Handle case where method is not provided */
+	if(argc>1){
+		method=argv[1];
+	}else{
+		method="notamethod";
+	}
 
 	/* Perform newtonian operation if the method is newton */
 	if(strcmp(method, "newton")==0){
 
-		/* Assign newton parameters to cmdline args */
-		tolerance=atof(argv[2]);
-		x0=atof(argv[3]);
-		verbose=atoi(argv[4]);
+		/* Check for proper amount of cmd line args */
+		if(argc!=5){
 
-		/* Make function call to newton method */
-		newton(f, df, x0, MAX_ITERATIONS, tolerance, verbose);
+			/* Print usage */
+			fprintf(stdout,"\nUsage: ./hw4 newton $TOL(double) $X(double) $VERB(0/1)\n");
+
+			/* Return out of main method */
+			return 0;
+
+		}else{
+
+			/* Assign newton parameters to cmdline args */
+			tolerance=atof(argv[2]);
+			x0=atof(argv[3]);
+			verbose=atoi(argv[4]);
+
+			/* Make function call to newton method */
+			newton(f, df, x0, MAX_ITERATIONS, tolerance, verbose);
+		}
+
+	}else if(strcmp(method, "bisection")==0){
+
+		/* Check for proper amount of cmd line args */
+		if(argc!=6){
+
+			/* print usage */
+			fprintf(stdout,"\nUsage: ./hw4 bisection $TOL(double) $X0(double) $X1(double) $VERB(0/1)\n");
+
+			/* Return out of main method */
+			return 0;
+
+		}else{
+
+			/* Assign bisection parameters to cmdline args */
+			tolerance=atof(argv[2]);
+			a=atof(argv[3]);
+			b=atof(argv[4]);
+			verbose=atoi(argv[5]);
+
+			/* Make function call to newton method */
+
+			bisection(f,a,b, MAX_ITERATIONS, tolerance,verbose);
+		}
+
+	}else if(strcmp(method, "secant")==0){
+
+		/* Check for proper number of cmd line args */
+		if(argc!=6){
+
+			/* Print proper usage */
+			fprintf(stdout,"\nUsage: ./hw4 secant $TOL(double) $A(double) $B(double) $VERB(0/1)\n");
+
+			/* Return out of main method */
+			return 0;
+		}else{
+
+			/* Assign secant parameters to cmdline args */
+			tolerance=atof(argv[2]);
+			x0=atof(argv[3]);
+			x1=atof(argv[4]);
+			verbose=atoi(argv[5]);
+
+			secant(f,x0,x1,tolerance,MAX_ITERATIONS,verbose);
+		}
+	}else{
+
+		/* print proper usage */
+		fprintf(stdout,"\nUsage: \n");
+		fprintf(stdout,"./hw4 newton $TOL(double) $X(double) $VERB(0/1)\n");
+		fprintf(stdout,"./hw4 bisection $TOL(double) $X0(double) $X1(double) $VERB(0/1)\n");
+		fprintf(stdout,"./hw4 secant $TOL(double) $A(double) $B(double) $VERB(0/1)\n");
 
 	}
-	/* End newton check */
-
-	if(strcmp(method, "bisection")==0){
-
-		/* Assign bisection parameters to cmdline args */
-		tolerance=atof(argv[2]);
-		a=atof(argv[3]);
-		b=atof(argv[4]);
-		verbose=atoi(argv[5]);
-
-		/* Make function call to newton method */
-
-		bisection(f,a,b, MAX_ITERATIONS, tolerance,verbose);
-	}
-	/* end bisection check */
-
-	if(strcmp(method, "secant")==0){
-
-		/* Assign secant parameters to cmdline args */
-		tolerance=atof(argv[2]);
-		x0=atof(argv[3]);
-		x1=atof(argv[4]);
-		verbose=atoi(argv[5]);
-
-		secant(f,x0,x1,tolerance,MAX_ITERATIONS,verbose);
-
-	}
-	/* end secant check */
 
 	return 0;
 }
