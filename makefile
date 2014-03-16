@@ -9,6 +9,9 @@ CC = gcc
 CFLAGS = -Wall -ansi
 LFLAGS = -lm
 
+#Timers module
+TIMER=-DEN_TIME
+
 ## Testing Parameters, modify as needed
 TOL=.000000000001
 #Bisection
@@ -23,16 +26,20 @@ X12=5
 #VERB=1 (print partial results)
 VERB=1
 
+
+
 ## Main "body" of makefile
 
 hw4: rootfinding.o hw4.o
-	$(CC) $(CFLAGS) -o hw4 rootfinding.o hw4.o $(LFLAGS)
+	$(CC) $(CFLAGS) -o hw4 rootfinding.o hw4.o $(LFLAGS) 
 
-rootfinding.o: rootfinding.c rootfinding.h
-	$(CC) $(CFLAGS) -c rootfinding.c
+rootfinding.o: rootfinding.c rootfinding.h FORCE
+	$(CC) $(CFLAGS) -c rootfinding.c 
 
-hw4.o: hw4.c
-	$(CC) $(CFLAGS) -c hw4.c
+hw4.o: hw4.c FORCE
+	$(CC) $(CFLAGS) -c  hw4.c $(TIMER)
+
+FORCE: 
 
 
 ##Testing block, redirect output to a file?

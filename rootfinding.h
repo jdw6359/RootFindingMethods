@@ -8,7 +8,8 @@
  *****************************************************************************/
 #ifndef _ROOTFINDING_H_
 #define _ROOTFINDING_H_
-#define MAX_ITERATIONS (1000)
+
+#define MAX_METHOD_ITERATIONS (1000)
 
 
 /* Typemark for a scalar function of one variable */
@@ -16,7 +17,7 @@ typedef double (*func1arg) (double);
 
 /* Function prototypes */
 extern double bisection ( func1arg f, double a, double b, int Nmax, double tol , int verb);
-/* 
+/*
 PURPOSE:   find the root of a scalar nonlinear function using the
            bisection method
 

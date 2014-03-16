@@ -8,8 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "rootfinding.h"
 
+#include "rootfinding.h"
 
 /* Bisection method implementation */
 extern double bisection ( func1arg f, double a, double b, int Nmax, double tol, int verb){

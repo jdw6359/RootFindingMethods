@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-
 #include "rootfinding.h"
+#include "Timers.h"
 
 /* Function that represents the equation whose roots we are solving. Function
    evaluates and returns result at the given x value */
@@ -29,6 +29,9 @@ int main(int argc, char *argv[]){
 
 	/* Declare int value for cmdline args */
 	int verbose;
+
+	/* Declare counter variable to compare to MAX_ITERATIONS during timing */
+	int iterations;
 
 	/* Assign function addresses to variables */
 	func1arg f=&equation;
@@ -60,8 +63,22 @@ int main(int argc, char *argv[]){
 			x0=atof(argv[3]);
 			verbose=atoi(argv[4]);
 
-			/* Make function call to newton method */
-			newton(f, df, x0, MAX_ITERATIONS, tolerance, verbose);
+			DECLARE_TIMER(NewtonTimer);
+
+			START_TIMER(NewtonTimer);
+
+			/* Loop for MAX_ITERATIONS times through newton method */
+			for(iterations=0;iterations < NUM_ITERATIONS;iterations++){
+
+				/* Make function call to newton method */
+				newton(f, df, x0, MAX_METHOD_ITERATIONS, tolerance, verbose);
+			}
+
+			STOP_TIMER(NewtonTimer);
+
+			PRINT_TIMER(NewtonTimer);
+
+			RESET_TIMER(NewtonTimer);
 		}
 
 	}else if(strcmp(method, "bisection")==0){
@@ -85,7 +102,7 @@ int main(int argc, char *argv[]){
 
 			/* Make function call to newton method */
 
-			bisection(f,a,b, MAX_ITERATIONS, tolerance,verbose);
+			bisection(f,a,b, MAX_METHOD_ITERATIONS, tolerance,verbose);
 		}
 
 	}else if(strcmp(method, "secant")==0){
@@ -106,7 +123,7 @@ int main(int argc, char *argv[]){
 			x1=atof(argv[4]);
 			verbose=atoi(argv[5]);
 
-			secant(f,x0,x1,tolerance,MAX_ITERATIONS,verbose);
+			secant(f,x0,x1,tolerance,MAX_METHOD_ITERATIONS,verbose);
 		}
 	}else{
 

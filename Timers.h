@@ -13,7 +13,13 @@
 #define _TIMERS_H_
 
 
-#define NUM_ITERATIONS (1000)
+/* Ensures that if EN_TIME module is not defined, there will only be one
+iteration through the desired method */
+#if defined(EN_TIME)
+	#define NUM_ITERATIONS (1000)
+#else
+	#define NUM_ITERATIONS (1)
+#endif
 /*********************************************/
 /* The timers are enabled when the code      */
 /* is compiled. The following pre-processor  */
