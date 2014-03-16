@@ -24,7 +24,7 @@ X02=1.5
 X11=-5
 X12=5
 #VERB=1 (print partial results)
-VERB=1
+VERB=0
 
 
 

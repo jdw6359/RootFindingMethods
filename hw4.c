@@ -67,7 +67,7 @@ int main(int argc, char *argv[]){
 
 			START_TIMER(NewtonTimer);
 
-			/* Loop for MAX_ITERATIONS times through newton method */
+			/* Loop for NUM__ITERATIONS times through newton method */
 			for(iterations=0;iterations < NUM_ITERATIONS;iterations++){
 
 				/* Make function call to newton method */
@@ -100,9 +100,22 @@ int main(int argc, char *argv[]){
 			b=atof(argv[4]);
 			verbose=atoi(argv[5]);
 
-			/* Make function call to newton method */
+			DECLARE_TIMER(BisectionTimer);
 
-			bisection(f,a,b, MAX_METHOD_ITERATIONS, tolerance,verbose);
+			START_TIMER(BisectionTimer);
+
+			for(iterations=0;iterations<NUM_ITERATIONS;iterations++){
+
+				/* Make function call to newton method */
+				bisection(f,a,b, MAX_METHOD_ITERATIONS, tolerance,verbose);
+			}
+
+			STOP_TIMER(BisectionTimer);
+
+			PRINT_TIMER(BisectionTimer);
+
+			RESET_TIMER(BisectionTimer);
+
 		}
 
 	}else if(strcmp(method, "secant")==0){
@@ -123,7 +136,23 @@ int main(int argc, char *argv[]){
 			x1=atof(argv[4]);
 			verbose=atoi(argv[5]);
 
-			secant(f,x0,x1,tolerance,MAX_METHOD_ITERATIONS,verbose);
+			DECLARE_TIMER(SecantTimer);
+
+			START_TIMER(SecantTimer);
+
+			for(iterations=0;iterations<NUM_ITERATIONS;iterations++){
+
+				/* Make function call here */
+				secant(f,x0,x1,tolerance,MAX_METHOD_ITERATIONS,verbose);
+			}
+
+			STOP_TIMER(SecantTimer);
+
+			PRINT_TIMER(SecantTimer);
+
+			RESET_TIMER(SecantTimer);
+
+
 		}
 	}else{
 
