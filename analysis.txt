@@ -1,0 +1,149 @@
+Approach to Optimization / results of optimization
+	To observe the various levels of optimization, I decided that I would
+	use the Timers.h module developed in HW2, and would run each method
+	with NUM_ITERATIONS=1000 at each level of optimization to see if 
+	optimizing the program would actually "optimize" the execution
+	of the program and speed it up.
+
+	The included info is the average time(ms) that it took to run
+	each of the alrogithms once
+	
+	Operations Tested: 
+		./hw4 newton .000000000001 -1.5 0
+		./hw4 secant .000000000001  -1.5 -5 0
+		./hw4 bisection .000000000001 -2.5 2.5 0
+
+
+	NUM_ITERATIONS was set to 50000
+
+	Newton:
+		No optimization: .001600(ms) 
+		O1: .001400(ms)
+		O2: .001200(ms)
+		O3: .001200(ms)
+
+	Secant:
+		No Optimization: .002400(ms)
+		O1: .002400(ms)
+		O2: .002400(ms)
+		O3: .002400(ms)
+
+	Bisection: 
+		No Optimization: .029000(ms)
+		O1: .025600(ms)
+		O2: .026000(ms)
+		O3: .025600(ms)
+
+	After inspecting the running times for each of the operations at various
+	levels of optimization, it is not extremely clear exactly how helpful 
+	compiler optimization is. 
+
+	In the case of the newton method, there are decreases in time from 
+	no optimization (.001600 ms) to level O1 (.001400 ms), and then again
+	to level O2(.001200 ms)
+
+	The timing of the secant method however, remained stagnant at a time
+	of .002400 ms throughout all levels of optimization. 
+
+	Lastly, the bisection method made improvements from No optimization
+	(.029000 ms) to level O1 (.025600 ms), but did not improve from there.
+	Rather, each iteration ran 4 ten thousanths of a second slower in level 
+	O2 than in O1. This loss was recovered when the program was optimized 
+	one step further in level O3. 
+
+	Overall, I would say that Optimization is helpful in creating programs
+	that are fast to execute, but taking the extra effort to compile at
+	levels O2 and O3 may not always be worth the overhead of compilation. 
+	For the sake of this project, there is almost no difference in
+	compilation times between the different levels, but in a much larger
+	project levels O2 and O3 would likely be cumbersome. 
+
+
+Results obtained for each program / execution given constraints
+	
+	Newton:
+		x01=-1.5, Root of -88.630548 found
+		x02= 1.5, Root of 1.991137 found
+
+	Secant:
+		x01=-1.5 x11=2.07, Root of 1.991137 found
+		x02=1.5 x12=2.5, Root of 1.991137 found
+
+	Bisection:
+		A=-2.5 B=2.5,  Root of 1.991137 found
+
+	In all cases with the exception of one, the root of 1.991137 was found.
+	In the case of Newton's method where x01=-1.5, the result is technically
+	correct, considering the fact that it IS a root of the function. The reason
+	that this outlier was generated is due to the fact that the function
+	being evaluated has a local maximum in the realm of -1.15 and -1.
+	When the tangent line to -1.5 is calculated, the x value we are 
+	concerned with grows closer to this range. Because of the fact that
+	the local maxima exists, the slope of the tangent line approaches 0. 
+
+	At iteration #3, the slope is -.000472 (rather flat), and this line
+	extrapolates to an x value of -87.910771. This then causes the focus to 
+	be on any roots in that neighborhood, and the root of -88.630548 is 
+	eventually found. It is important in this case to not put Newton's 
+	starting point in a location such that a local maxima/minima lies 
+	between the point and the solution
+
+
+Influential Factors observed for each method's performance
+
+	Newton:
+		X01=-1.5
+			# of iterations=9
+			This case is described above in the analysis of the solution, 
+			but it is important to note that the first couple of
+			iterations are spent approaching a local maxima, and then
+			veering off of the initial expected root, and landing around
+			x=-88. Other than that, newton's method approaches the
+			root rather quickly, and once it was in the neighborhood 
+			of the root, quickly found the root within the desired 
+			tolerance	
+
+		X02=1.5
+			# of iterations=6
+			This example shows exactly how quickly the relative 
+			solution was found, as in iteration #2, the solution
+			is already found within a tolerance of .01. The next few
+			iterations are only spent to ensure that the result is within tolerance. 
+
+	Secant:
+		X01=-1.5, X11=2.07
+			# of iterations 7
+			This example is effective only because a proper "guess" 
+			was chosen. By choosing the value of 2.07, The algorithm
+			is sure to find an x intercept that is closer to the
+			root than is the value of -1.5. If this value was not chosen, 
+			(or any other value within(1.91,2.07)), the method would not 
+			have been able to detect the root in under 99 iterations.
+			At that amount of iterations and considering this method, 
+			it is extremely important that appropriate "guess" values
+			are chosen. 
+
+		X02=1.5, X12=2.5
+			# of iterations 7
+			This example if an advocate for the statement 
+			"[points] which are reasonably close to the solution x*. 
+			Preferably the signs of y0=f(x0) and y1=f(x1) should
+			be different." 
+			-http://www.math.ohiou.edu/courses/math3600/lecture6.pdf
+	
+	Bisection:
+		A=-2.5, B=2.5
+			# of iterations 43
+			In this case, the bisection method found the result in
+			43 iterations. This method is bulky, slow, and inefficient
+			as its bounds do not rapidly approach the root, however
+			it does not require any input from the user as to 
+			what an appropriate "starting point" or "guess" value
+			would be. Because at each iteration the bounds of the
+			region are halved, the number of iterations for any
+			particular range and function can be determined by
+			n=log(range)/(log(2) * log(TOLERANCE)).
+			In this case, the range of 5 (-2.5 to 2.5) had to be
+			halved 43 times until the range of values was smaller
+			than the tolerance of 1E-12.
+	

@@ -8,14 +8,21 @@
 /* Function that represents the equation whose roots we are solving. Function
    evaluates and returns result at the given x value */
 double equation(double value){
-	return (pow(value,3)) - (4 * pow(value,2)) + (7*value) + (4);
+	return .76 * value * sin(30 * value / 52) * tan(10 * value / 47) \
+	+ 2.9 * cos(value + 2.5) * sin(.39 * (1.5 + value));
 
 }
 
 /* Function that represents the derivative of the equation expressed above.
    Function evaluates and returns result at given x value */
 double derivative(double value){
-	return (3 * pow(value,2)) - (8 *value) + (7);
+
+	return -2.9 * sin(.39 * (value + 1.5)) * sin(value + 2.5) \
+	+ 1.131 * cos(.39 * (value + 1.5)) * cos(value + 2.5) \
+	+ .76 * sin(15 * value /26) * tan(10 * value/47) \
+	+ .438462 * value * cos(15 * value/26) * tan(10 * value/47) \
+	+ .161702 * value * sin(15 * value/26) * (1 + tan(10 * value/47) * tan(10 * value/47));
+
 }
 
 
@@ -58,6 +65,8 @@ int main(int argc, char *argv[]){
 
 		}else{
 
+			printf("Performing Newton Method!...\n");
+
 			/* Assign newton parameters to cmdline args */
 			tolerance=atof(argv[2]);
 			x0=atof(argv[3]);
@@ -94,6 +103,8 @@ int main(int argc, char *argv[]){
 
 		}else{
 
+			printf("Performing Bisection Method!...\n");
+
 			/* Assign bisection parameters to cmdline args */
 			tolerance=atof(argv[2]);
 			a=atof(argv[3]);
@@ -129,6 +140,8 @@ int main(int argc, char *argv[]){
 			/* Return out of main method */
 			return 0;
 		}else{
+
+			printf("Performing Secant Method!...\n");
 
 			/* Assign secant parameters to cmdline args */
 			tolerance=atof(argv[2]);

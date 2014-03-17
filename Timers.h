@@ -16,7 +16,7 @@
 /* Ensures that if EN_TIME module is not defined, there will only be one
 iteration through the desired method */
 #if defined(EN_TIME)
-	#define NUM_ITERATIONS (1000)
+	#define NUM_ITERATIONS (50000)
 #else
 	#define NUM_ITERATIONS (1)
 #endif
@@ -116,7 +116,8 @@ A.State=0;								\
 /* Stop the timer (silently) if it is currently running */ 		\
 if(1 == A.State) 							\
 STOP_TIMER(A); /* no error possible in this case */ 			\
-printf("Time Per Calulation: ("#A") = %g msec.\n\n",(double)A.Elapsed/(double)CLOCKS_PER_SEC / (double)NUM_ITERATIONS * 1000); \
+printf("\nCalculations Performed: %d\n", NUM_ITERATIONS); \
+printf("Time Per Calulation: ("#A") = %f msec.\n\n",(double)A.Elapsed/(double)CLOCKS_PER_SEC / (double)NUM_ITERATIONS * 1000); \
 } /* PRINT_TIMER */
 
 

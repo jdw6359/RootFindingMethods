@@ -14,8 +14,6 @@
 /* Bisection method implementation */
 extern double bisection ( func1arg f, double a, double b, int Nmax, double tol, int verb){
 
-	fprintf(stdout,"\nPerforming bisection method...\n");
-
 	/* double value to represent the midpoint we are evaluating */
 	double c;
 
@@ -52,8 +50,13 @@ extern double bisection ( func1arg f, double a, double b, int Nmax, double tol, 
 		/* If f(c) is zero or the distance between b and a is less than the
 		desired tolerance, we have found our solution */
 		if((f(c)==0)||(fabs((b-a)/2)<tol)){
-			printf("\nRoot found %f\n\n", c);
-			break;
+
+			/* Only display the results if verb is set to one */
+			if(verb==1){
+				printf("\nRoot found %f\n\n", c);
+			}
+
+			return c;
 		}
 		/* end if check to find root */
 
@@ -81,8 +84,6 @@ extern double bisection ( func1arg f, double a, double b, int Nmax, double tol, 
 
 
 extern double newton(func1arg f, func1arg df, double x0, int Nmax, double tol, int verb){
-
-	fprintf(stdout, "\nPerforming newton method...\n");
 
 	/* Declare x,y,and yprime variables */
 	double y, yprime, x1;
@@ -115,8 +116,13 @@ extern double newton(func1arg f, func1arg df, double x0, int Nmax, double tol, i
 
 		/* if the result is within tolerance, we have found the solution */
 		if(fabs(x1-x0)/fabs(x1) < tol){
-			fprintf(stdout, "\nsolution found: %f\n\n", x0);
-			break;
+
+			/* only display output of verb is set to one */
+			if(verb==1){
+				fprintf(stdout, "\nsolution found: %f\n\n", x0);
+			}
+
+			return x0;
 		}
 
 		x0=x1;
@@ -130,8 +136,6 @@ extern double newton(func1arg f, func1arg df, double x0, int Nmax, double tol, i
 
 
 extern double secant (func1arg f, double x0, double x1, double tol, int Nmax, int verb){
-
-	fprintf(stdout, "\nPerforming secant method...\n");
 
 	/* Declare values for temp x and f as well as function values for x0 and x1 */
 	double f0,f1;
@@ -150,6 +154,7 @@ extern double secant (func1arg f, double x0, double x1, double tol, int Nmax, in
 		/* Print verbose output only if the flag is set */
 		if(verb==1){
 
+			/* Only display verbose output if flag is set */
 			fprintf(stdout, "\nThis is iteration #%d through the secant algorithm\n", count);
 			fprintf(stdout, "Value of x0 is: %f\n", x0);
 			fprintf(stdout, "Value of x1 is: %f\n", x1);
@@ -187,8 +192,14 @@ extern double secant (func1arg f, double x0, double x1, double tol, int Nmax, in
 		/* If difference between values is within tolerance
 		result has been found */
 		if(fabs(x1-x0)<tol){
-			fprintf(stdout, "\nResult is x = %f\n\n", x1);
-			break;
+
+			/* Only display results if verb flag is set */
+			if(verb==1){
+
+				fprintf(stdout, "\nResult is x = %f\n\n", x1);
+			}
+
+			return x1;
 		}
 
 		/* Increment count */
