@@ -13,7 +13,6 @@ LFLAGS = -lm
 ## -O1, -O2, -O3, or Nothing
 OptLevel=
 
-
 #Timers module
 TIMER=
 
